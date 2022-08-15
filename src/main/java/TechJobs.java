@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -10,7 +7,7 @@ public class TechJobs {
 
     static Scanner in = new Scanner(System.in);
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
 
         // Initialize our field map with key/name pairs
         HashMap<String, String> columnChoices = new HashMap<>();
@@ -19,6 +16,7 @@ public class TechJobs {
         columnChoices.put("location", "Location");
         columnChoices.put("position type", "Position Type");
         columnChoices.put("all", "All");
+
 
         // Top-level menu options
         HashMap<String, String> actionChoices = new HashMap<>();
@@ -77,7 +75,7 @@ public class TechJobs {
         Boolean validChoice = false;
         String[] choiceKeys = new String[choices.size()];
 
-        // Put the choices in an ordered structure so we can
+        // Put the choices in an ordered structure, so we can
         // associate an integer with each one
         int i = 0;
         for (String choiceKey : choices.keySet()) {
@@ -112,7 +110,7 @@ public class TechJobs {
                 validChoice = true;
             }
 
-        } while(!validChoice);
+        } while (!validChoice);
 
         return choiceKeys[choiceIdx];
     }
@@ -120,6 +118,36 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        System.out.println("printJobs is not implemented yet");
+//
+//        System.out.println(JobData.findAll().size());
+        if (someJobs == null || someJobs.isEmpty()) {
+            System.out.print("No Results");
+        } else {
+
+
+            ArrayList<HashMap<String, String>> printList = someJobs;
+            for (int a = 0; a < printList.size(); a++) {
+                System.out.println("\n*****");
+                HashMap<String, String> tmpData = printList.get(a);
+                Set<String> key = tmpData.keySet();
+                Iterator it = key.iterator();
+                while (it.hasNext()) {
+
+                    String hmKey = (String) it.next();
+                    String hmData =  tmpData.get(hmKey);
+
+                    System.out.println(hmKey + ": " + hmData);
+                }
+                System.out.println("*****");
+            }
+        }
     }
 }
+//            System.out.println("printJobs is not implemented yet");
+//            }
+
+
+//        }
+//        System.out.println("*****");
+
+
